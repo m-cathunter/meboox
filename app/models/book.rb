@@ -4,6 +4,20 @@ class Book < ApplicationRecord
 
   validates :title, presence: true
   validates :publication_date, presence: true
+
+  def suggestions
+    authors_books = Book.limit(3).joins(:comments).
+      group('books.id').where(author_id: author_id).order('avg(comments.stars) desc')
+
+    if (length = authors_books.length) < 3
+      missing_records = 3 - length
+      all_books = Book.limit(missing_records).joins(:comments).group('books.id').order('avg(comments.stars) desc')
+    else
+      all_books = []
+    end
+
+    authors_books + all_books
+  end
 end
 
 # == Schema Information
