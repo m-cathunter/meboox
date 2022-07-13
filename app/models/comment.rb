@@ -3,6 +3,7 @@ class Comment < ApplicationRecord
 
   validates :nickname, presence: true, uniqueness: true
   validates :content, presence: true
+  validates :stars, :inclusion => 0..5, if: proc { |x| x.stars.present? }
 end
 
 # == Schema Information
@@ -12,6 +13,7 @@ end
 #  id         :integer          not null, primary key
 #  content    :text
 #  nickname   :string
+#  stars      :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  book_id    :integer          not null

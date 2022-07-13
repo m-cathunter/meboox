@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
   # GET /books/:book_id/comments
   def index
-    render json: book.comments.page(params[:page]).per(params[:per])
+    render json: book.comments.order(stars: :desc).page(params[:page]).per(params[:per])
   end
 
   # POST /books/:book_id/comments
@@ -24,6 +24,6 @@ class CommentsController < ApplicationController
   end
 
   def comment_params
-    params.permit(:nickname, :content)
+    params.permit(:nickname, :content, :stars)
   end
 end
