@@ -1,7 +1,7 @@
 class Comment < ApplicationRecord
   belongs_to :book
 
-  validates :nickname, presence: true
+  validates :nickname, presence: true, uniqueness: true
   validates :content, presence: true
 end
 
