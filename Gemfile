@@ -22,6 +22,8 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 gem 'active_model_serializers'
 gem 'faker', require: false
+# Paginator for modern web app frameworks and ORMs
+gem 'kaminari', '~> 1.2', '>= 1.2.2'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

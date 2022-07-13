@@ -1,7 +1,7 @@
 class BooksController < ApplicationController
   # GET /books
   def index
-    render json: Book.all
+    render json: Book.page(params[:page]).per(params[:per])
   end
 
   # GET /books/:id
